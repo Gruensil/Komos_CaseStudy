@@ -1,5 +1,5 @@
 //
-// Created by IFML2NG2 on 2017/09/20 11:40:52
+// Created by IFML2NG2 on 2017/10/19 16:35:06
 //
 
 // Angular Imports
@@ -53,6 +53,9 @@ export class LoginComponent {
 	
 		loginActionAction(){
 			// PROTECTED REGION ID _ZYq5sJxwEee_2OeSSzYyRQ.loginAction ENABLED START
+if(this._authenticationService.login(this.username, this.password)){
+    this._router.navigate(['mainMenu']);
+}
 			// PROTECTED REGION END
 		}
 

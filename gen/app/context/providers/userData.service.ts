@@ -31,6 +31,7 @@ export class UserDataService {
 	getUserRole(){
 		
 		// PROTECTED REGION ID userRole ENABLED START
+		        this.userRole = localStorage.getItem('userRole');
 		// PROTECTED REGION END
 		
 		this._userRoleSubject.next(this.userRole);

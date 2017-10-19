@@ -1,4 +1,4 @@
-	import { Injectable, OnInit } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 
 // import { Book } from '../data/book';
 // import { Student } from '../data/student';
@@ -9,6 +9,9 @@
 // import { BOOKLENDINGS } from '../data/mock-bookLendings';
 // import { BOOKRESERVATIONS } from '../data/mock-bookReservations';
 // import { STUDENTS } from '../data/mock-students';
+import { CLIENTS } from '../data/mock-clients';
+import { ACCOUNTS } from '../data/mock-accounts';
+import { Transaction } from '../data/transaction';
 
 declare var $: any;
 
@@ -29,13 +32,60 @@ export class DataService {
 
 // Get / Set operations
 
-//   localGet(key: string){
-//     return JSON.parse(localStorage.getItem(key));
-//   }
+  localGet(key: string){
+    return JSON.parse(localStorage.getItem(key));
+  }
 
-//   localSet(key: string, data){
-//     return localStorage.setItem(key, JSON.stringify(data));
-//   }
+  localSet(key: string, data){
+    return localStorage.setItem(key, JSON.stringify(data));
+  }
+
+  getAccounts(){
+    return ACCOUNTS;
+  }
+
+  getAccountById(id: string){
+    return ACCOUNTS.find(acc => acc.accountID == id);
+  }
+
+  getAccountsByClientId(id: string){
+    console.log(ACCOUNTS.filter(acc => acc.ownedBy.clientID == id));
+    return ACCOUNTS.filter(acc => acc.ownedBy.clientID == id);
+  }
+
+  getClients(){
+    return CLIENTS;
+  }
+
+  getClientById(id:string){
+    return CLIENTS.find(c => c.clientID == id);
+  }
+
+  getTransactionByAccount(id: string){
+    return this.localGet('transactions').filter(l => l.associatedWith.accountId == id);
+  }    
+
+  initiateTransaction(account: string, fives: number, tens: number, twenties: number, fifties: number){
+    var trans: Transaction = {
+      associatedWith: null,
+      numberFives: 0,
+      numberTens: 0,
+      numberTwenties: 0,
+      numberFifties: 0
+    };
+    var total = fives*5 + tens*10 + twenties*20 + fifties*50;
+    if(total <= this.getAccountById(account).balance){
+      console.log(this.getAccountById(account));
+      trans.associatedWith = this.getAccountById(account);
+      trans.numberFives = fives;
+      trans.numberTens = tens;
+      trans.numberTwenties = twenties;
+      trans.numberFifties = fifties;
+
+      this.localSet('transaction', trans);
+      this.getAccountById(account).balance -= total;
+    }
+  }
 
 //   getLendings(id: string) {
 //     return Promise.resolve(this.localGet('booklendings').filter(l => l.lentBy.studentId == id));

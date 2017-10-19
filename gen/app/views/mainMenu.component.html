@@ -1,5 +1,5 @@
 <!--
-   Created by IFML2NG2 on 2017/09/20 11:40:52
+   Created by IFML2NG2 on 2017/10/19 16:35:07
 -->
 
 <div class="col-md-12">
@@ -8,5 +8,60 @@
 	<!-- PROTECTED REGION END -->
 	
 	<div name="content">
+	 	<div name="list" *ngIf="!_displayPropertiesService.displayProperties.isMobile || (_displayPropertiesService.displayProperties.isMobile && !selectedAccountBinding)">
+	 	        		<search-component [searchSpace]="advancedSearchSpace" [title]="'Search'" (onFilterUpdate)="filterUpdated($event)"></search-component>
+	 		<table id="_lInRMJ9mEeeQDN6CvfzAfw" name="accountList" [ngClass]="_displayPropertiesService.displayProperties.tableClass">
+	 			<thead>
+	 	<th>
+	 		{{_resourceService.getLangString('balance')}}
+	 	</th>
+	 	<th>
+	 		{{_resourceService.getLangString('accountID')}}
+	 	</th>
+	 	</thead>
+	 	<tbody>
+	 	<tr *ngFor="#el of accountBinding| accountListFilter: filterBy" (click)="onSelect(el)" [class.info]="el === selectedAccountBinding">
+	 	<td>
+	 		{{el.balance}}
+	 	</td>
+	 	<td>
+	 		{{el.accountID}}
+	 	</td>
+	 				</tr>
+	 			</tbody>
+	 		</table>
+	 	</div>
+	 	<div id="actionArea" name="actionArea">
+	 	<div name="mobileDetails" *ngIf="_displayPropertiesService.displayProperties.isMobile && selectedAccountBinding" [ngClass]="_displayPropertiesService.displayProperties.hideOnDesktop">
+	 		<div style="margin-bottom:5px">	
+	 			<button type="button" class="btn btn-default" (click)="onSelect(selectedAccountBinding)"> 
+	 				<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> {{_resourceService.getLangString('back')}}
+	 			</button>    		
+	 		</div>
+	 		<div name="detailsTable">
+	 			<table [ngClass]="_displayPropertiesService.displayProperties.tableClass">
+	 	
+	 		<tr>
+	 			<th>
+	 				{{_resourceService.getLangString('balance')}}
+	 			</th>
+	 			<td>
+	 				{{selectedAccountBinding.balance}}
+	 			</td>
+	 		</tr>
+	 	
+	 		<tr>
+	 			<th>
+	 				{{_resourceService.getLangString('accountID')}}
+	 			</th>
+	 			<td>
+	 				{{selectedAccountBinding.accountID}}
+	 			</td>
+	 		</tr>
+	 			</table>
+	 		</div>
+	 	</div>
+	 	<button type="button" class="btn btn-default" (click)="selectAccount()" >{{_resourceService.getLangString('selectAccount')}}</button>
+	 	</div>
 	</div>
 </div>

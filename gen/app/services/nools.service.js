@@ -47,18 +47,10 @@ var NoolsService = (function () {
                 _DisplayPropertiesService.setProperty('searchInputGroupClass', 'input-group backgroundSecondary borderSecondary');
                 _DisplayPropertiesService.setProperty('isMobile', true);
             });
-            flow.rule("Navigation Staff", { salience: 11 }, [profile_1.Profile, "m", "m.getApp().getUserRole() == 'staff'"], function (facts) {
-                _DisplayPropertiesService.pushNavigation({ path: '/searchBooks', key: 'books' });
-                _DisplayPropertiesService.pushNavigation({ path: '/students', key: 'students' });
-                _DisplayPropertiesService.pushNavigation({ path: '/bookReservations', key: 'bookReservations' });
-                _DisplayPropertiesService.pushNavigation({ path: '/lendingForm', key: 'lendingForm' });
-                _DisplayPropertiesService.pushNavigation({ path: '/administration', key: 'administration' });
+            flow.rule("Navigation Client", { salience: 11 }, [profile_1.Profile, "m", "m.getApp().getUserRole() == 'client'"], function (facts) {
+                _DisplayPropertiesService.pushNavigation({ path: '/mainMenu', key: 'mainMenu' });
             });
-            flow.rule("Navigation Student", { salience: 11 }, [profile_1.Profile, "m", "m.getApp().getUserRole() == 'student'"], function (facts) {
-                _DisplayPropertiesService.pushNavigation({ path: '/lentBook', key: 'lent' });
-                _DisplayPropertiesService.pushNavigation({ path: '/searchBooks', key: 'books' });
-            });
-            flow.rule("Navigation Unregistered", { salience: 12 }, [profile_1.Profile, "m", "(m.getApp().getUserRole() != 'staff' && m.getApp().getUserRole() != 'student')"], function (facts) {
+            flow.rule("Navigation Unregistered", { salience: 12 }, [profile_1.Profile, "m", "m.getApp().getUserRole() != 'client'"], function (facts) {
                 _DisplayPropertiesService.clearNavigation();
             });
         });

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<core:IFMLModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://www.omg.org/spec/20130218/core" xmlns:ext="http://www.omg.org/spec/20130218/ext" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" id="_EGEcMIDjEea11dlfBOUHWQ">
+<core:IFMLModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://www.omg.org/spec/20130218/core" xmlns:ext="http://www.omg.org/spec/20130218/ext" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" id="_EGEcMIDjEea11dlfBOUHWQ" name="">
   <interactionFlowModel id="_h3pkgIC1Eea2S59Os6LSKA">
     <interactionFlowModelElements xsi:type="core:ViewContainer" id="_SGc7MJxuEee_2OeSSzYyRQ" name="login" isDefault="true">
       <viewElements xsi:type="ext:Form" id="_bL9uMJxuEee_2OeSSzYyRQ" name="loginForm">
@@ -14,99 +14,89 @@
         </viewComponentParts>
       </viewElements>
     </interactionFlowModelElements>
-    <interactionFlowModelElements xsi:type="core:ViewContainer" id="_S15wQJxwEee_2OeSSzYyRQ" name="mainMenu" inInteractionFlows="//@interactionFlowModel/@interactionFlowModelElements.2/@outInteractionFlows.0 //@interactionFlowModel/@interactionFlowModelElements.3/@outInteractionFlows.0"/>
-    <interactionFlowModelElements xsi:type="core:IFMLAction" id="_ZYq5sJxwEee_2OeSSzYyRQ" name="loginAction" inInteractionFlows="//@interactionFlowModel/@interactionFlowModelElements.0/@viewElements.0/@viewElementEvents.0/@outInteractionFlows.0">
-      <outInteractionFlows xsi:type="core:NavigationFlow" id="_he3vUJxxEee_2OeSSzYyRQ" targetInteractionFlowElement="//@interactionFlowModel/@interactionFlowModelElements.1"/>
-    </interactionFlowModelElements>
-    <interactionFlowModelElements xsi:type="core:IFMLAction" id="_icIo0JxxEee_2OeSSzYyRQ" name="pinAction" inInteractionFlows="//@interactionFlowModel/@interactionFlowModelElements.4/@viewElements.0/@viewElementEvents.0/@outInteractionFlows.0">
-      <outInteractionFlows xsi:type="core:NavigationFlow" id="_kQbQ8JxxEee_2OeSSzYyRQ" targetInteractionFlowElement="//@interactionFlowModel/@interactionFlowModelElements.1"/>
-    </interactionFlowModelElements>
-    <interactionFlowModelElements xsi:type="core:ViewContainer" id="__wUQUJ08EeeWrJ4OgYSE3Q" name="pinLogin">
-      <viewElements xsi:type="ext:Form" id="_IbTDcJ09EeeWrJ4OgYSE3Q" name="pinForm">
-        <viewElementEvents xsi:type="ext:OnSubmitEvent" id="_PlD7cJ09EeeWrJ4OgYSE3Q" name="pinEvent">
-          <outInteractionFlows xsi:type="core:NavigationFlow" id="_QUZGoJ09EeeWrJ4OgYSE3Q" targetInteractionFlowElement="//@interactionFlowModel/@interactionFlowModelElements.3"/>
+    <interactionFlowModelElements xsi:type="core:ViewContainer" id="_S15wQJxwEee_2OeSSzYyRQ" name="mainMenu" inInteractionFlows="//@interactionFlowModel/@interactionFlowModelElements.2/@outInteractionFlows.0">
+      <viewElements xsi:type="ext:List" id="_lInRMJ9mEeeQDN6CvfzAfw" name="accountList">
+        <parameters id="_zupGcJ9mEeeQDN6CvfzAfw" name="accountBinding">
+          <type xsi:type="uml:Class" href="Komos_CD.uml#_8kpXIYCrEeakIrkbdVKNbg"/>
+        </parameters>
+        <viewElementEvents xsi:type="ext:OnSelectEvent" id="_Vto7gJ9nEeeQDN6CvfzAfw" name="selectAccount">
+          <outInteractionFlows xsi:type="core:NavigationFlow" id="_cWSqgJ9nEeeQDN6CvfzAfw" targetInteractionFlowElement="//@interactionFlowModel/@interactionFlowModelElements.3"/>
         </viewElementEvents>
-        <viewComponentParts xsi:type="ext:SimpleField" id="_KWyfwJ09EeeWrJ4OgYSE3Q" name="pin">
-          <type xsi:type="uml:PrimitiveType" href="pathmap://UML_METAMODELS/Ecore.metamodel.uml#EInt"/>
+        <viewComponentParts xsi:type="core:DataBinding" id="_rFDacJ9mEeeQDN6CvfzAfw" name="accountBinding" domainConcept="//@domainModel/@domainElements.4">
+          <subViewComponentParts xsi:type="core:VisualizationAttribute" id="_EG5HQJ9nEeeQDN6CvfzAfw" name="accountStatus" featureConcept="//@domainModel/@domainElements.6"/>
+          <subViewComponentParts xsi:type="core:VisualizationAttribute" id="_nyzDoKKUEeeQDN6CvfzAfw" name="accoundID" featureConcept="//@domainModel/@domainElements.5"/>
         </viewComponentParts>
       </viewElements>
     </interactionFlowModelElements>
+    <interactionFlowModelElements xsi:type="core:IFMLAction" id="_ZYq5sJxwEee_2OeSSzYyRQ" name="loginAction" inInteractionFlows="//@interactionFlowModel/@interactionFlowModelElements.0/@viewElements.0/@viewElementEvents.0/@outInteractionFlows.0">
+      <outInteractionFlows xsi:type="core:NavigationFlow" id="_he3vUJxxEee_2OeSSzYyRQ" targetInteractionFlowElement="//@interactionFlowModel/@interactionFlowModelElements.1"/>
+    </interactionFlowModelElements>
+    <interactionFlowModelElements xsi:type="core:ViewContainer" id="_tzHksJ4dEeeQDN6CvfzAfw" name="denomination" inInteractionFlows="//@interactionFlowModel/@interactionFlowModelElements.1/@viewElements.0/@viewElementEvents.0/@outInteractionFlows.0">
+      <viewElements xsi:type="ext:Form" id="_jbcpcJ4hEeeQDN6CvfzAfw" name="denomination">
+        <parameters id="_ARhIcJ94EeeQDN6CvfzAfw" name="transferBinding">
+          <type xsi:type="uml:Class" href="Komos_CD.uml#_8kpXJ4CrEeakIrkbdVKNbg"/>
+        </parameters>
+        <viewElementEvents xsi:type="ext:OnSubmitEvent" id="_GboJAJ9yEeeQDN6CvfzAfw" name="transfer">
+          <outInteractionFlows xsi:type="core:DataFlow" id="_1Vpi4J-aEeeQDN6CvfzAfw" targetInteractionFlowElement="//@interactionFlowModel/@interactionFlowModelElements.4"/>
+        </viewElementEvents>
+        <viewComponentParts xsi:type="ext:SimpleField" id="_gVpcAJ9nEeeQDN6CvfzAfw" name="fiveNote">
+          <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </viewComponentParts>
+        <viewComponentParts xsi:type="ext:SimpleField" id="_hau0wJ9nEeeQDN6CvfzAfw" name="tenNotes">
+          <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </viewComponentParts>
+        <viewComponentParts xsi:type="ext:SimpleField" id="_jxS38J9xEeeQDN6CvfzAfw" name="twentyNotes">
+          <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </viewComponentParts>
+        <viewComponentParts xsi:type="ext:SimpleField" id="_jbL-EKIvEeeQDN6CvfzAfw" name="fiftyNotes">
+          <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </viewComponentParts>
+      </viewElements>
+    </interactionFlowModelElements>
+    <interactionFlowModelElements xsi:type="core:IFMLAction" id="_zryXAJ93EeeQDN6CvfzAfw" name="transferAction" inInteractionFlows="//@interactionFlowModel/@interactionFlowModelElements.3/@viewElements.0/@viewElementEvents.0/@outInteractionFlows.0"/>
   </interactionFlowModel>
   <domainModel id="_EGEcMYDjEea11dlfBOUHWQ">
-    <domainElements xsi:type="core:UMLDomainConcept" id="_EGONMIDjEea11dlfBOUHWQ" name="Book">
-      <classifier xsi:type="uml:Class" href="test5555.uml#_8kpXIYCrEeakIrkbdVKNbg"/>
+    <domainElements xsi:type="core:UMLDomainConcept" id="_EGONMIDjEea11dlfBOUHWQ" name="Client">
+      <classifier xsi:type="uml:Class" href="Komos_CD.uml#_8kpXN4CrEeakIrkbdVKNbg"/>
     </domainElements>
-    <domainElements xsi:type="core:UMLStructuralFeature" id="_EGO0QIDjEea11dlfBOUHWQ" name="bookId">
-      <structuralFeature xsi:type="uml:Property" href="test5555.uml#_8kpXIoCrEeakIrkbdVKNbg"/>
+    <domainElements xsi:type="core:UMLStructuralFeature" id="_EGO0QIDjEea11dlfBOUHWQ" name="firstname">
+      <structuralFeature xsi:type="uml:Property" href="Komos_CD.uml#_8kpXOoCrEeakIrkbdVKNbg"/>
     </domainElements>
-    <domainElements xsi:type="core:UMLStructuralFeature" id="_EGO0QYDjEea11dlfBOUHWQ" name="bookStatus">
-      <structuralFeature xsi:type="uml:Property" href="test5555.uml#_8kpXJICrEeakIrkbdVKNbg"/>
+    <domainElements xsi:type="core:UMLStructuralFeature" id="_EGO0QYDjEea11dlfBOUHWQ" name="lastname">
+      <structuralFeature xsi:type="uml:Property" href="Komos_CD.uml#_8kpXPICrEeakIrkbdVKNbg"/>
     </domainElements>
-    <domainElements xsi:type="core:UMLStructuralFeature" id="_EGO0QoDjEea11dlfBOUHWQ" name="bookInfo">
-      <structuralFeature xsi:type="uml:Property" href="test5555.uml#_8kpXJoCrEeakIrkbdVKNbg"/>
+    <domainElements xsi:type="core:UMLStructuralFeature" id="_EGO0QoDjEea11dlfBOUHWQ" name="clientID">
+      <structuralFeature xsi:type="uml:Property" href="Komos_CD.uml#_8kpXOICrEeakIrkbdVKNbg"/>
     </domainElements>
-    <domainElements xsi:type="core:UMLDomainConcept" id="_EGO0Q4DjEea11dlfBOUHWQ" name="BookInfo">
-      <classifier xsi:type="uml:Class" href="test5555.uml#_8kpXJ4CrEeakIrkbdVKNbg"/>
+    <domainElements xsi:type="core:UMLDomainConcept" id="_EGO0Q4DjEea11dlfBOUHWQ" name="Account" dataBinding="//@interactionFlowModel/@interactionFlowModelElements.1/@viewElements.0/@viewComponentParts.0">
+      <classifier xsi:type="uml:Class" href="Komos_CD.uml#_8kpXIYCrEeakIrkbdVKNbg"/>
     </domainElements>
-    <domainElements xsi:type="core:UMLStructuralFeature" id="_EGO0RIDjEea11dlfBOUHWQ" name="isbn">
-      <structuralFeature xsi:type="uml:Property" href="test5555.uml#_8kpXKICrEeakIrkbdVKNbg"/>
+    <domainElements xsi:type="core:UMLStructuralFeature" id="_EGO0RIDjEfa11dlfBOUHWQ" name="accountID">
+      <structuralFeature xsi:type="uml:Property" href="Komos_CD.uml#_ssm2wKKKEeeQDN6CvfzAfw"/>
     </domainElements>
-    <domainElements xsi:type="core:UMLStructuralFeature" id="_EGO0RYDjEea11dlfBOUHWQ" name="title">
-      <structuralFeature xsi:type="uml:Property" href="test5555.uml#_8kpXKoCrEeakIrkbdVKNbg"/>
-    </domainElements>
-    <domainElements xsi:type="core:UMLStructuralFeature" id="_EGO0RoDjEea11dlfBOUHWQ" name="author">
-      <structuralFeature xsi:type="uml:Property" href="test5555.uml#_8kpXLICrEeakIrkbdVKNbg"/>
-    </domainElements>
-    <domainElements xsi:type="core:UMLStructuralFeature" id="_EGO0R4DjEea11dlfBOUHWQ">
-      <structuralFeature xsi:type="uml:Property" href="test5555.uml#_8kpXL4CrEeakIrkbdVKNbg"/>
-    </domainElements>
-    <domainElements xsi:type="core:UMLDomainConcept" id="_EGO0SIDjEea11dlfBOUHWQ" name="BookLending">
-      <classifier xsi:type="uml:Class" href="test5555.uml#_8kpXMICrEeakIrkbdVKNbg"/>
-    </domainElements>
-    <domainElements xsi:type="core:UMLStructuralFeature" id="_EGO0SYDjEea11dlfBOUHWQ" name="until">
-      <structuralFeature xsi:type="uml:Property" href="test5555.uml#_8kpXMYCrEeakIrkbdVKNbg"/>
-    </domainElements>
-    <domainElements xsi:type="core:UMLStructuralFeature" id="_EGO0SoDjEea11dlfBOUHWQ" name="lentBook">
-      <structuralFeature xsi:type="uml:Property" href="test5555.uml#_8kpXM4CrEeakIrkbdVKNbg"/>
-    </domainElements>
-    <domainElements xsi:type="core:UMLStructuralFeature" id="_EGO0S4DjEea11dlfBOUHWQ" name="lentBy">
-      <structuralFeature xsi:type="uml:Property" href="test5555.uml#_8kpXNICrEeakIrkbdVKNbg"/>
-    </domainElements>
-    <domainElements xsi:type="core:UMLStructuralFeature" id="_EGO0TIDjEea11dlfBOUHWQ">
-      <structuralFeature xsi:type="uml:Property" href="test5555.uml#_8kpXNoCrEeakIrkbdVKNbg"/>
-    </domainElements>
-    <domainElements xsi:type="core:UMLDomainConcept" id="_EGO0TYDjEea11dlfBOUHWQ" name="Student">
-      <classifier xsi:type="uml:Class" href="test5555.uml#_8kpXN4CrEeakIrkbdVKNbg"/>
-    </domainElements>
-    <domainElements xsi:type="core:UMLStructuralFeature" id="_EGO0ToDjEea11dlfBOUHWQ" name="studentId">
-      <structuralFeature xsi:type="uml:Property" href="test5555.uml#_8kpXOICrEeakIrkbdVKNbg"/>
-    </domainElements>
-    <domainElements xsi:type="core:UMLStructuralFeature" id="_EGO0T4DjEea11dlfBOUHWQ" name="firstname">
-      <structuralFeature xsi:type="uml:Property" href="test5555.uml#_8kpXOoCrEeakIrkbdVKNbg"/>
-    </domainElements>
-    <domainElements xsi:type="core:UMLStructuralFeature" id="_EGO0UIDjEea11dlfBOUHWQ" name="lastname">
-      <structuralFeature xsi:type="uml:Property" href="test5555.uml#_8kpXPICrEeakIrkbdVKNbg"/>
-    </domainElements>
-    <domainElements xsi:type="core:UMLStructuralFeature" id="_EGO0UYDjEea11dlfBOUHWQ" name="studentStatus">
-      <structuralFeature xsi:type="uml:Property" href="test5555.uml#_8kpXPoCrEeakIrkbdVKNbg"/>
-    </domainElements>
-    <domainElements xsi:type="core:UMLStructuralFeature" id="_EGO0UoDjEea11dlfBOUHWQ">
-      <structuralFeature xsi:type="uml:Property" href="test5555.uml#_8kpXQYCrEeakIrkbdVKNbg"/>
-    </domainElements>
-    <domainElements xsi:type="core:UMLDomainConcept" id="_EGO0U4DjEea11dlfBOUHWQ" name="BookReservation">
-      <classifier xsi:type="uml:Class" href="test5555.uml#_8kpXQoCrEeakIrkbdVKNbg"/>
-    </domainElements>
-    <domainElements xsi:type="core:UMLStructuralFeature" id="_EGO0VIDjEea11dlfBOUHWQ" name="reservedBy">
-      <structuralFeature xsi:type="uml:Property" href="test5555.uml#_8kpXQ4CrEeakIrkbdVKNbg"/>
-    </domainElements>
-    <domainElements xsi:type="core:UMLStructuralFeature" id="_EGO0VYDjEea11dlfBOUHWQ" name="reservedBook">
-      <structuralFeature xsi:type="uml:Property" href="test5555.uml#_8kpXRICrEeakIrkbdVKNbg"/>
-    </domainElements>
-    <domainElements xsi:type="core:UMLStructuralFeature" id="_EGO0VoDjEea11dlfBOUHWQ">
-      <structuralFeature xsi:type="uml:Property" href="test5555.uml#_8kpXRoCrEeakIrkbdVKNbg"/>
+    <domainElements xsi:type="core:UMLStructuralFeature" id="_EGO0RIDjEea11dlfBOUHWQ" name="balance">
+      <structuralFeature xsi:type="uml:Property" href="Komos_CD.uml#_8kpXIoCrEeakIrkbdVKNbg"/>
     </domainElements>
     <domainElements xsi:type="core:UMLStructuralFeature" id="_EGO0V4DjEea11dlfBOUHWQ">
-      <structuralFeature xsi:type="uml:Property" href="test5555.uml#_8kpXSICrEeakIrkbdVKNbg"/>
+      <structuralFeature xsi:type="uml:Property" href="Komos_CD.uml#_8kpXJoCrEeakIrkbdVKNbg"/>
+    </domainElements>
+    <domainElements xsi:type="core:UMLDomainConcept" id="_EGO0SIDjEea11dlfBOUHWQ" name="Transaction">
+      <classifier xsi:type="uml:Class" href="Komos_CD.uml#_8kpXJ4CrEeakIrkbdVKNbg"/>
+    </domainElements>
+    <domainElements xsi:type="core:UMLStructuralFeature" id="_EGO0SYDjEea11dlfBOUHWQ" name="numberFives">
+      <structuralFeature xsi:type="uml:Property" href="Komos_CD.uml#_8kpXKICrEeakIrkbdVKNbg"/>
+    </domainElements>
+    <domainElements xsi:type="core:UMLStructuralFeature" id="_EGO0SoDjEea11dlfBOUHWQ" name="numberTens">
+      <structuralFeature xsi:type="uml:Property" href="Komos_CD.uml#_8kpXKoCrEeakIrkbdVKNbg"/>
+    </domainElements>
+    <domainElements xsi:type="core:UMLStructuralFeature" id="_EGO0S4DjEea11dlfBOUHWQ" name="numberTwenties">
+      <structuralFeature xsi:type="uml:Property" href="Komos_CD.uml#_8kpXLICrEeakIrkbdVKNbg"/>
+    </domainElements>
+    <domainElements xsi:type="core:UMLStructuralFeature" id="_EGO0TIDjEea11dlfBOUHWQ" name="numberFifties">
+      <structuralFeature xsi:type="uml:Property" href="Komos_CD.uml#_8kpXfiarEeakIrkbdVKNbg"/>
+    </domainElements>
+    <domainElements xsi:type="core:UMLStructuralFeature" id="_EGO0VoDjEea11dlfBOUHWQ">
+      <structuralFeature xsi:type="uml:Property" href="Komos_CD.uml#_nIYiAJ-REeeQDN6CvfzAfw"/>
     </domainElements>
   </domainModel>
 </core:IFMLModel>

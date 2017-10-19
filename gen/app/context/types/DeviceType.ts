@@ -3,7 +3,6 @@
 //contains a user-defined Type
 
 export enum DeviceType{
-	atm = 0,
-	mobile = 1,
-	desktop = 2,
+	mobile = 0,
+	desktop = 1,
 }

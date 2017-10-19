@@ -87,8 +87,12 @@ class ViewContainerGenerator extends AbstractClassGenerator<ViewContainerImpl> {
 				// bindings for fields in form
 					«FOR vElem : it.viewElements»
 						«IF (vElem instanceof FormImpl)»
-							«FOR varCompPart : (vElem as FormImpl).viewComponentParts»		
-								«varCompPart.name»: «UMLReferenceResolver.sharedInstance.resolveProxyURI(((varCompPart as SimpleFieldImpl).type as PrimitiveTypeImpl).eProxyURI)»;
+							«FOR varCompPart : (vElem as FormImpl).viewComponentParts»
+								«IF UMLReferenceResolver.sharedInstance.resolveProxyURI(((varCompPart as SimpleFieldImpl).type as PrimitiveTypeImpl).eProxyURI)=="Integer"»
+									«varCompPart.name»: number;
+								«ELSE»		
+									«varCompPart.name»: «UMLReferenceResolver.sharedInstance.resolveProxyURI(((varCompPart as SimpleFieldImpl).type as PrimitiveTypeImpl).eProxyURI)»;
+								«ENDIF»
 							«ENDFOR»						
 						«ENDIF»
 					«ENDFOR»

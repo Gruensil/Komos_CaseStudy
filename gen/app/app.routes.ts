@@ -2,7 +2,7 @@ import { provideRouter, RouterConfig }  from '@angular/router';
 
 import { LoginComponent } from './views/login.component';
 import { MainMenuComponent } from './views/mainMenu.component';
-import { PinLoginComponent } from './views/pinLogin.component';
+import { DenominationComponent } from './views/denomination.component';
 
 export const routes: RouterConfig = [
 	{
@@ -14,8 +14,8 @@ export const routes: RouterConfig = [
 		component: MainMenuComponent
 	},
 	{
-		path: 'pinLogin',
-		component: PinLoginComponent
+		path: 'denomination',
+		component: DenominationComponent
 	},
 	{
 		path: '',

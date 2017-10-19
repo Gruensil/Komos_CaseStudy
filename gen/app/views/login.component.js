@@ -1,5 +1,5 @@
 //
-// Created by IFML2NG2 on 2017/09/20 11:40:52
+// Created by IFML2NG2 on 2017/10/19 16:35:06
 //
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -41,6 +41,9 @@ var LoginComponent = (function () {
     };
     LoginComponent.prototype.loginActionAction = function () {
         // PROTECTED REGION ID _ZYq5sJxwEee_2OeSSzYyRQ.loginAction ENABLED START
+        if (this._authenticationService.login(this.username, this.password)) {
+            this._router.navigate(['mainMenu']);
+        }
         // PROTECTED REGION END
     };
     // called when component is initiated			

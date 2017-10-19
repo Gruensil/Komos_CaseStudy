@@ -27,6 +27,7 @@ var UserDataService = (function () {
     }
     UserDataService.prototype.getUserRole = function () {
         // PROTECTED REGION ID userRole ENABLED START
+        this.userRole = localStorage.getItem('userRole');
         // PROTECTED REGION END
         this._userRoleSubject.next(this.userRole);
     };
