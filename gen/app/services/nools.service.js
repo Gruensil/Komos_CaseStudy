@@ -49,6 +49,7 @@ var NoolsService = (function () {
             });
             flow.rule("Navigation Client", { salience: 11 }, [profile_1.Profile, "m", "m.getApp().getUserRole() == 'client'"], function (facts) {
                 _DisplayPropertiesService.pushNavigation({ path: '/mainMenu', key: 'mainMenu' });
+                _DisplayPropertiesService.pushNavigation({ path: '/transactionView', key: 'transactionView' });
             });
             flow.rule("Navigation Unregistered", { salience: 12 }, [profile_1.Profile, "m", "m.getApp().getUserRole() != 'client'"], function (facts) {
                 _DisplayPropertiesService.clearNavigation();

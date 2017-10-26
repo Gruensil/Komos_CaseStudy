@@ -18,17 +18,17 @@ var router_2 = require('@angular/router');
 var common_1 = require('@angular/common');
 // Search Component Imports
 var search_component_1 = require('../dynamic/search.component');
-var accountList_pipe_1 = require('../helper/pipes/accountList.pipe');
+var transactionList_pipe_1 = require('../helper/pipes/transactionList.pipe');
 // Service Imports
 var logger_service_1 = require('../services/logger.service');
 var authentication_service_1 = require('../services/authentication.service');
 var data_service_1 = require('../services/data.service');
 var displayProperties_service_1 = require('../services/displayProperties.service');
 var resource_service_1 = require('../services/resource.service');
-var MainMenuComponent = (function () {
-    // PROTECTED REGION ID _S15wQJxwEee_2OeSSzYyRQ.mainMenu ENABLED START
+var TransactionViewComponent = (function () {
+    // PROTECTED REGION ID _kZgfALTcEeeUzbyM6lB9Aw.transactionView ENABLED START
     // PROTECTED REGION END
-    function MainMenuComponent(_router, _route, _loggerService, _authenticationService, _dataService, _displayPropertiesService, _resourceService) {
+    function TransactionViewComponent(_router, _route, _loggerService, _authenticationService, _dataService, _displayPropertiesService, _resourceService) {
         this._router = _router;
         this._route = _route;
         this._loggerService = _loggerService;
@@ -38,60 +38,54 @@ var MainMenuComponent = (function () {
         this._resourceService = _resourceService;
         // fill advanced search space
         this.advancedSearchSpace = [
-            { key: "balance", title: "accountStatus" },
-            { key: "accountID", title: "accoundID" }
+            { key: "associatedWith.accountID", title: "associatedWith.accountID" },
+            { key: "associatedWith.balance", title: "associatedWith.balance" },
+            { key: "associatedWith.ownedBy.clientID", title: "associatedWith.ownedBy.clientID" },
+            { key: "associatedWith.ownedBy.firstname", title: "associatedWith.ownedBy.firstname" },
+            { key: "associatedWith.ownedBy.lastname", title: "associatedWith.ownedBy.lastname" },
+            { key: "totalAmount", title: "totalAmount" }
         ];
     }
     // stubs generated for view element events
-    MainMenuComponent.prototype.selectAccount = function () {
-        this.denominationActionAction();
-    };
-    MainMenuComponent.prototype.denominationActionAction = function () {
-        // PROTECTED REGION ID _vAz04LTcEeeUzbyM6lB9Aw.denominationAction ENABLED START
-        localStorage.setItem('selectedAcc', this.selectedAccountBinding.accountID);
-        this._router.navigate(['denomination']);
-        // PROTECTED REGION END
-    };
     // stubs for data service calls for data bindings
-    MainMenuComponent.prototype.getAccountBinding = function () {
-        // PROTECTED REGION ID _rFDacJ9mEeeQDN6CvfzAfw.getAccountBinding ENABLED START
-        var client = this._dataService.getClientById(localStorage.getItem('clientID'));
-        this.accountBinding = this._dataService.getAccountsByClientId(client.clientID);
+    TransactionViewComponent.prototype.getTransactionBinding = function () {
+        // PROTECTED REGION ID _DwoS4LTdEeeUzbyM6lB9Aw.getTransactionBinding ENABLED START
+        this.transactionBinding = this._dataService.getTransactionsByClientId(localStorage.getItem('clientID'));
         // PROTECTED REGION END
     };
-    MainMenuComponent.prototype.onSelect = function (el) {
-        if (this.selectedAccountBinding === el) {
-            this.selectedAccountBinding = undefined;
-            this.isSelectedAccountBinding = false;
+    TransactionViewComponent.prototype.onSelect = function (el) {
+        if (this.selectedTransactionBinding === el) {
+            this.selectedTransactionBinding = undefined;
+            this.isSelectedTransactionBinding = false;
         }
         else {
-            this.selectedAccountBinding = el;
-            this.isSelectedAccountBinding = true;
+            this.selectedTransactionBinding = el;
+            this.isSelectedTransactionBinding = true;
         }
     };
     // called when search filter is updated
-    MainMenuComponent.prototype.filterUpdated = function (val) {
+    TransactionViewComponent.prototype.filterUpdated = function (val) {
         this.filterBy = JSON.stringify(val);
     };
     // called when component is initiated			
-    MainMenuComponent.prototype.ngOnInit = function () {
+    TransactionViewComponent.prototype.ngOnInit = function () {
         // Check authentication requirements, if empty, no authentication requirements for this component
         // Call methods for filling data binding
-        this.getAccountBinding();
-        // PROTECTED REGION ID _S15wQJxwEee_2OeSSzYyRQ.ngOnInit ENABLED START
+        this.getTransactionBinding();
+        // PROTECTED REGION ID _kZgfALTcEeeUzbyM6lB9Aw.ngOnInit ENABLED START
         // PROTECTED REGION END
     };
-    MainMenuComponent = __decorate([
+    TransactionViewComponent = __decorate([
         core_1.Component({
-            selector: 'mainMenu',
-            templateUrl: 'app/views/mainMenu.component.html',
+            selector: 'transactionView',
+            templateUrl: 'app/views/transactionView.component.html',
             providers: [logger_service_1.LoggerService, displayProperties_service_1.DisplayPropertiesService, authentication_service_1.AuthenticationService, data_service_1.DataService],
             directives: [common_1.NgClass, search_component_1.SearchComponent],
-            pipes: [accountList_pipe_1.AccountListFilter,]
+            pipes: [transactionList_pipe_1.TransactionListFilter,]
         }), 
         __metadata('design:paramtypes', [router_2.Router, router_1.ActivatedRoute, logger_service_1.LoggerService, authentication_service_1.AuthenticationService, data_service_1.DataService, displayProperties_service_1.DisplayPropertiesService, resource_service_1.ResourceService])
-    ], MainMenuComponent);
-    return MainMenuComponent;
+    ], TransactionViewComponent);
+    return TransactionViewComponent;
 }());
-exports.MainMenuComponent = MainMenuComponent;
-//# sourceMappingURL=mainMenu.component.js.map
+exports.TransactionViewComponent = TransactionViewComponent;
+//# sourceMappingURL=transactionView.component.js.map

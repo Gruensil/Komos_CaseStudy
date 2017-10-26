@@ -1,0 +1,121 @@
+<!--
+   Created by IFML2NG2 on 2017/10/26 17:59:54
+-->
+
+<div class="col-md-12">
+
+	<!-- PROTECTED REGION ID transactionView ENABLED START -->
+	<!-- PROTECTED REGION END -->
+	
+	<div name="content">
+	 	<div name="list" *ngIf="!_displayPropertiesService.displayProperties.isMobile || (_displayPropertiesService.displayProperties.isMobile && !selectedTransactionBinding)">
+	 	        		<search-component [searchSpace]="advancedSearchSpace" [title]="'Search'" (onFilterUpdate)="filterUpdated($event)"></search-component>
+	 		<table id="__KvF0LTcEeeUzbyM6lB9Aw" name="transactionList" [ngClass]="_displayPropertiesService.displayProperties.tableClass">
+	 			<thead>
+	 	<th>
+	 		{{_resourceService.getLangString('accountID')}}
+	 	</th>
+	 	<th>
+	 		{{_resourceService.getLangString('balance')}}
+	 	</th>
+	 	<th>
+	 		{{_resourceService.getLangString('clientID')}}
+	 	</th>
+	 	<th>
+	 		{{_resourceService.getLangString('firstname')}}
+	 	</th>
+	 	<th>
+	 		{{_resourceService.getLangString('lastname')}}
+	 	</th>
+	 	<th>
+	 		{{_resourceService.getLangString('totalAmount')}}
+	 	</th>
+	 	</thead>
+	 	<tbody>
+	 	<tr *ngFor="#el of transactionBinding| transactionListFilter: filterBy" (click)="onSelect(el)" [class.info]="el === selectedTransactionBinding">
+	 	<td>
+	 		{{el.associatedWith.accountID}}
+	 	</td>
+	 	<td>
+	 		{{el.associatedWith.balance}}
+	 	</td>
+	 	<td>
+	 		{{el.associatedWith.ownedBy.clientID}}
+	 	</td>
+	 	<td>
+	 		{{el.associatedWith.ownedBy.firstname}}
+	 	</td>
+	 	<td>
+	 		{{el.associatedWith.ownedBy.lastname}}
+	 	</td>
+	 	<td>
+	 		{{el.totalAmount}}
+	 	</td>
+	 				</tr>
+	 			</tbody>
+	 		</table>
+	 	</div>
+	 	<div id="actionArea" name="actionArea">
+	 	<div name="mobileDetails" *ngIf="_displayPropertiesService.displayProperties.isMobile && selectedTransactionBinding" [ngClass]="_displayPropertiesService.displayProperties.hideOnDesktop">
+	 		<div style="margin-bottom:5px">	
+	 			<button type="button" class="btn btn-default" (click)="onSelect(selectedTransactionBinding)"> 
+	 				<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> {{_resourceService.getLangString('back')}}
+	 			</button>    		
+	 		</div>
+	 		<div name="detailsTable">
+	 			<table [ngClass]="_displayPropertiesService.displayProperties.tableClass">
+	 	<tr>
+	 		<th>
+	 			{{_resourceService.getLangString('accountID')}}
+	 		</th>
+	 		<td>
+	 			{{selectedTransactionBinding.associatedWith.accountID}}
+	 		</td>
+	 	</tr>
+	 	<tr>
+	 		<th>
+	 			{{_resourceService.getLangString('balance')}}
+	 		</th>
+	 		<td>
+	 			{{selectedTransactionBinding.associatedWith.balance}}
+	 		</td>
+	 	</tr>
+	 	<tr>
+	 		<th>
+	 			{{_resourceService.getLangString('clientID')}}
+	 		</th>
+	 		<td>
+	 			{{selectedTransactionBinding.associatedWith.ownedBy.clientID}}
+	 		</td>
+	 	</tr>
+	 	<tr>
+	 		<th>
+	 			{{_resourceService.getLangString('firstname')}}
+	 		</th>
+	 		<td>
+	 			{{selectedTransactionBinding.associatedWith.ownedBy.firstname}}
+	 		</td>
+	 	</tr>
+	 	<tr>
+	 		<th>
+	 			{{_resourceService.getLangString('lastname')}}
+	 		</th>
+	 		<td>
+	 			{{selectedTransactionBinding.associatedWith.ownedBy.lastname}}
+	 		</td>
+	 	</tr>
+	 	
+	 		<tr>
+	 			<th>
+	 				{{_resourceService.getLangString('totalAmount')}}
+	 			</th>
+	 			<td>
+	 				{{selectedTransactionBinding.totalAmount}}
+	 			</td>
+	 		</tr>
+	 			</table>
+	 		</div>
+	 	</div>
+	 	</div>
+	</div>
+</div>

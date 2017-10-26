@@ -1,5 +1,5 @@
 //
-// Created by IFML2NG2 on 2017/10/19 16:35:07
+// Created by IFML2NG2 on 2017/10/26 17:59:54
 //
 
 // Angular Imports
@@ -31,7 +31,7 @@ export class DenominationComponent {
 	selectedTransferBinding:  any;
 	isSelectedTransferBinding:  boolean;
 	// bindings for fields in form
-		fiveNote: number;
+		fiveNotes: number;
 		tenNotes: number;
 		twentyNotes: number;
 		fiftyNotes: number;
@@ -57,8 +57,8 @@ export class DenominationComponent {
 	
 		transferActionAction(){
 			// PROTECTED REGION ID _zryXAJ93EeeQDN6CvfzAfw.transferAction ENABLED START
-			if(this.fiveNote != null && this.tenNotes != null && this.twentyNotes != null && this.fiftyNotes != null){
-				this._dataService.initiateTransaction(localStorage.getItem('selectedAcc'), this.fiveNote, this.tenNotes, this.twentyNotes, this.fiftyNotes);
+			if(this.fiveNotes != null && this.tenNotes != null && this.twentyNotes != null && this.fiftyNotes != null){
+				this._dataService.initiateTransaction(localStorage.getItem('selectedAcc'), this.fiveNotes, this.tenNotes, this.twentyNotes, this.fiftyNotes);
 				this._router.navigate(['/mainMenu']);
 			}
 			// PROTECTED REGION END

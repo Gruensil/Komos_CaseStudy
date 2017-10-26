@@ -2,7 +2,7 @@ import { LangString } from '../data/string';
 
 export var lang_DE_DE: LangString[] = [
     
-    {key: 'fiveNote', text:'Fünf Euro Scheine'},
+    {key: 'fiveNotes', text:'Fünf Euro Scheine'},
     {key: 'tenNotes', text:'Zehn Euro Scheine'},
     {key: 'twentyNotes', text:'Zwanzig Euro Scheine'},
     {key: 'fiftyNotes', text:'Fünfzig Euro Scheine'},
@@ -11,13 +11,19 @@ export var lang_DE_DE: LangString[] = [
     {key: 'password', text:'Passwort'},
     {key: 'loginEvent', text:'Login'},
     
-    {key: 'balance', text:'Kontostand'},
-    {key: 'accountID', text:'Kontonummer'},
+    {key: 'balance', text:'Kontostandt'},
+    {key: 'accountID', text:'Kontonr.'},
+    {key: 'clientID', text:'Kundennr.'},
+    {key: 'firstname', text:'Vorname'},
+    {key: 'lastname', text:'Nachname'},
+    {key: 'totalAmount', text:'Gesamtbetrag'},
+
     {key: 'back', text:'zurück'},
     {key: 'selectAccount', text:'Konto auswählen'},
     {key: 'field.title', text:'Begriff'},
     {key: 'search', text:'suchen'},
     
     {key: 'mainMenu', text:'Hauptmenü'},
+    {key: 'transactionView', text:'Transaktionen'},
     
 ];

@@ -6,6 +6,7 @@ export class Transaction {
 		public numberTens: number,			
 		public numberTwenties: number,			
 		public numberFifties: number,			
+		public totalAmount: number,			
 		public associatedWith: Account			
 	){};
 }

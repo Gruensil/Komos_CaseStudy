@@ -1,5 +1,5 @@
 //
-// Created by IFML2NG2 on 2017/10/19 16:35:07
+// Created by IFML2NG2 on 2017/10/26 17:59:54
 //
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -41,8 +41,8 @@ var DenominationComponent = (function () {
     };
     DenominationComponent.prototype.transferActionAction = function () {
         // PROTECTED REGION ID _zryXAJ93EeeQDN6CvfzAfw.transferAction ENABLED START
-        if (this.fiveNote != null && this.tenNotes != null && this.twentyNotes != null && this.fiftyNotes != null) {
-            this._dataService.initiateTransaction(localStorage.getItem('selectedAcc'), this.fiveNote, this.tenNotes, this.twentyNotes, this.fiftyNotes);
+        if (this.fiveNotes != null && this.tenNotes != null && this.twentyNotes != null && this.fiftyNotes != null) {
+            this._dataService.initiateTransaction(localStorage.getItem('selectedAcc'), this.fiveNotes, this.tenNotes, this.twentyNotes, this.fiftyNotes);
             this._router.navigate(['/mainMenu']);
         }
         // PROTECTED REGION END

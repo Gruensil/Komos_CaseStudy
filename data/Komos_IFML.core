@@ -20,7 +20,7 @@
           <type xsi:type="uml:Class" href="Komos_CD.uml#_8kpXIYCrEeakIrkbdVKNbg"/>
         </parameters>
         <viewElementEvents xsi:type="ext:OnSelectEvent" id="_Vto7gJ9nEeeQDN6CvfzAfw" name="selectAccount">
-          <outInteractionFlows xsi:type="core:NavigationFlow" id="_cWSqgJ9nEeeQDN6CvfzAfw" targetInteractionFlowElement="//@interactionFlowModel/@interactionFlowModelElements.3"/>
+          <outInteractionFlows xsi:type="core:NavigationFlow" id="_cWSqgJ9nEeeQDN6CvfzAfw" targetInteractionFlowElement="//@interactionFlowModel/@interactionFlowModelElements.6"/>
         </viewElementEvents>
         <viewComponentParts xsi:type="core:DataBinding" id="_rFDacJ9mEeeQDN6CvfzAfw" name="accountBinding" domainConcept="//@domainModel/@domainElements.4">
           <subViewComponentParts xsi:type="core:VisualizationAttribute" id="_EG5HQJ9nEeeQDN6CvfzAfw" name="accountStatus" featureConcept="//@domainModel/@domainElements.6"/>
@@ -31,7 +31,7 @@
     <interactionFlowModelElements xsi:type="core:IFMLAction" id="_ZYq5sJxwEee_2OeSSzYyRQ" name="loginAction" inInteractionFlows="//@interactionFlowModel/@interactionFlowModelElements.0/@viewElements.0/@viewElementEvents.0/@outInteractionFlows.0">
       <outInteractionFlows xsi:type="core:NavigationFlow" id="_he3vUJxxEee_2OeSSzYyRQ" targetInteractionFlowElement="//@interactionFlowModel/@interactionFlowModelElements.1"/>
     </interactionFlowModelElements>
-    <interactionFlowModelElements xsi:type="core:ViewContainer" id="_tzHksJ4dEeeQDN6CvfzAfw" name="denomination" inInteractionFlows="//@interactionFlowModel/@interactionFlowModelElements.1/@viewElements.0/@viewElementEvents.0/@outInteractionFlows.0">
+    <interactionFlowModelElements xsi:type="core:ViewContainer" id="_tzHksJ4dEeeQDN6CvfzAfw" name="denomination" inInteractionFlows="//@interactionFlowModel/@interactionFlowModelElements.6/@outInteractionFlows.0">
       <viewElements xsi:type="ext:Form" id="_jbcpcJ4hEeeQDN6CvfzAfw" name="denomination">
         <parameters id="_ARhIcJ94EeeQDN6CvfzAfw" name="transferBinding">
           <type xsi:type="uml:Class" href="Komos_CD.uml#_8kpXJ4CrEeakIrkbdVKNbg"/>
@@ -39,7 +39,7 @@
         <viewElementEvents xsi:type="ext:OnSubmitEvent" id="_GboJAJ9yEeeQDN6CvfzAfw" name="transfer">
           <outInteractionFlows xsi:type="core:DataFlow" id="_1Vpi4J-aEeeQDN6CvfzAfw" targetInteractionFlowElement="//@interactionFlowModel/@interactionFlowModelElements.4"/>
         </viewElementEvents>
-        <viewComponentParts xsi:type="ext:SimpleField" id="_gVpcAJ9nEeeQDN6CvfzAfw" name="fiveNote">
+        <viewComponentParts xsi:type="ext:SimpleField" id="_gVpcAJ9nEeeQDN6CvfzAfw" name="fiveNotes">
           <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
         </viewComponentParts>
         <viewComponentParts xsi:type="ext:SimpleField" id="_hau0wJ9nEeeQDN6CvfzAfw" name="tenNotes">
@@ -54,6 +54,20 @@
       </viewElements>
     </interactionFlowModelElements>
     <interactionFlowModelElements xsi:type="core:IFMLAction" id="_zryXAJ93EeeQDN6CvfzAfw" name="transferAction" inInteractionFlows="//@interactionFlowModel/@interactionFlowModelElements.3/@viewElements.0/@viewElementEvents.0/@outInteractionFlows.0"/>
+    <interactionFlowModelElements xsi:type="core:ViewContainer" id="_kZgfALTcEeeUzbyM6lB9Aw" name="transactionView">
+      <viewElements xsi:type="ext:List" id="__KvF0LTcEeeUzbyM6lB9Aw" name="transactionList">
+        <parameters id="_2q6kYLTdEeeUzbyM6lB9Aw" name="transactionBinding">
+          <type xsi:type="uml:Class" href="Komos_CD.uml#_8kpXJ4CrEeakIrkbdVKNbg"/>
+        </parameters>
+        <viewComponentParts xsi:type="core:DataBinding" id="_DwoS4LTdEeeUzbyM6lB9Aw" name="transactionBinding" domainConcept="//@domainModel/@domainElements.8">
+          <subViewComponentParts xsi:type="core:VisualizationAttribute" id="_O0IckLTdEeeUzbyM6lB9Aw" name="accountName" featureConcept="//@domainModel/@domainElements.14"/>
+          <subViewComponentParts xsi:type="core:VisualizationAttribute" id="_P4wiULTdEeeUzbyM6lB9Aw" name="totalAmount" featureConcept="//@domainModel/@domainElements.13"/>
+        </viewComponentParts>
+      </viewElements>
+    </interactionFlowModelElements>
+    <interactionFlowModelElements xsi:type="core:IFMLAction" id="_vAz04LTcEeeUzbyM6lB9Aw" name="denominationAction" inInteractionFlows="//@interactionFlowModel/@interactionFlowModelElements.1/@viewElements.0/@viewElementEvents.0/@outInteractionFlows.0">
+      <outInteractionFlows xsi:type="core:NavigationFlow" id="_wz6xQLTcEeeUzbyM6lB9Aw" targetInteractionFlowElement="//@interactionFlowModel/@interactionFlowModelElements.3"/>
+    </interactionFlowModelElements>
   </interactionFlowModel>
   <domainModel id="_EGEcMYDjEea11dlfBOUHWQ">
     <domainElements xsi:type="core:UMLDomainConcept" id="_EGONMIDjEea11dlfBOUHWQ" name="Client">
@@ -80,7 +94,7 @@
     <domainElements xsi:type="core:UMLStructuralFeature" id="_EGO0V4DjEea11dlfBOUHWQ">
       <structuralFeature xsi:type="uml:Property" href="Komos_CD.uml#_8kpXJoCrEeakIrkbdVKNbg"/>
     </domainElements>
-    <domainElements xsi:type="core:UMLDomainConcept" id="_EGO0SIDjEea11dlfBOUHWQ" name="Transaction">
+    <domainElements xsi:type="core:UMLDomainConcept" id="_EGO0SIDjEea11dlfBOUHWQ" name="Transaction" dataBinding="//@interactionFlowModel/@interactionFlowModelElements.5/@viewElements.0/@viewComponentParts.0">
       <classifier xsi:type="uml:Class" href="Komos_CD.uml#_8kpXJ4CrEeakIrkbdVKNbg"/>
     </domainElements>
     <domainElements xsi:type="core:UMLStructuralFeature" id="_EGO0SYDjEea11dlfBOUHWQ" name="numberFives">
@@ -95,7 +109,10 @@
     <domainElements xsi:type="core:UMLStructuralFeature" id="_EGO0TIDjEea11dlfBOUHWQ" name="numberFifties">
       <structuralFeature xsi:type="uml:Property" href="Komos_CD.uml#_8kpXfiarEeakIrkbdVKNbg"/>
     </domainElements>
-    <domainElements xsi:type="core:UMLStructuralFeature" id="_EGO0VoDjEea11dlfBOUHWQ">
+    <domainElements xsi:type="core:UMLStructuralFeature" id="_EGO0T4DjEea11dlfBOUHWQ" name="totalAmount">
+      <structuralFeature xsi:type="uml:Property" href="Komos_CD.uml#_MGKQ4LdCEeeUzbyM6lB9Aw"/>
+    </domainElements>
+    <domainElements xsi:type="core:UMLStructuralFeature" id="_EGO0VoDjEen11dlfBOUHWQ" name="associatedWith">
       <structuralFeature xsi:type="uml:Property" href="Komos_CD.uml#_nIYiAJ-REeeQDN6CvfzAfw"/>
     </domainElements>
   </domainModel>

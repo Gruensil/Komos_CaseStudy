@@ -9,16 +9,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-// import { Book } from '../data/book';
-// import { Student } from '../data/student';
-// import { BookLending } from '../data/bookLending';
-// import { BookReservation } from '../data/bookReservation';
-// import { BOOKS } from '../data/mock-books';
-// import { BOOKLENDINGS } from '../data/mock-bookLendings';
-// import { BOOKRESERVATIONS } from '../data/mock-bookReservations';
-// import { STUDENTS } from '../data/mock-students';
 var mock_clients_1 = require('../data/mock-clients');
 var mock_accounts_1 = require('../data/mock-accounts');
+var mock_transactions_1 = require('../data/mock-transactions');
 var DataService = (function () {
     function DataService() {
         // if(localStorage.getItem('booklendings') === null){
@@ -45,7 +38,6 @@ var DataService = (function () {
         return mock_accounts_1.ACCOUNTS.find(function (acc) { return acc.accountID == id; });
     };
     DataService.prototype.getAccountsByClientId = function (id) {
-        console.log(mock_accounts_1.ACCOUNTS.filter(function (acc) { return acc.ownedBy.clientID == id; }));
         return mock_accounts_1.ACCOUNTS.filter(function (acc) { return acc.ownedBy.clientID == id; });
     };
     DataService.prototype.getClients = function () {
@@ -54,8 +46,26 @@ var DataService = (function () {
     DataService.prototype.getClientById = function (id) {
         return mock_clients_1.CLIENTS.find(function (c) { return c.clientID == id; });
     };
-    DataService.prototype.getTransactionByAccount = function (id) {
-        return this.localGet('transactions').filter(function (l) { return l.associatedWith.accountId == id; });
+    DataService.prototype.getTransactions = function () {
+        var trans = mock_transactions_1.TRANSACTIONS;
+        if (this.localGet('transactions') !== null) {
+            for (var _i = 0, _a = JSON.parse(this.localGet('transactions')); _i < _a.length; _i++) {
+                var t = _a[_i];
+                trans.push(t);
+            }
+            // trans.concat(JSON.parse(this.localGet('transactions')));
+            console.log(JSON.parse(this.localGet('transactions')));
+            console.log(trans);
+        }
+        return trans;
+    };
+    DataService.prototype.getTransactionsByAccount = function (id) {
+        var trans = this.getTransactions().filter(function (l) { return l.associatedWith.accountID === id; });
+        return trans;
+    };
+    DataService.prototype.getTransactionsByClientId = function (id) {
+        var trans = this.getTransactions().filter(function (l) { return l.associatedWith.ownedBy.clientID === id; });
+        return trans;
     };
     DataService.prototype.initiateTransaction = function (account, fives, tens, twenties, fifties) {
         var trans = {
@@ -63,17 +73,29 @@ var DataService = (function () {
             numberFives: 0,
             numberTens: 0,
             numberTwenties: 0,
-            numberFifties: 0
+            numberFifties: 0,
+            totalAmount: 0
         };
         var total = fives * 5 + tens * 10 + twenties * 20 + fifties * 50;
         if (total <= this.getAccountById(account).balance) {
-            console.log(this.getAccountById(account));
             trans.associatedWith = this.getAccountById(account);
             trans.numberFives = fives;
             trans.numberTens = tens;
             trans.numberTwenties = twenties;
             trans.numberFifties = fifties;
-            this.localSet('transaction', trans);
+            trans.totalAmount = total;
+            // Add Transactions in localStorage
+            if (this.localGet('transactions') === null) {
+                var newTrans = [];
+                newTrans.push(trans);
+                this.localSet('transactions', JSON.stringify(newTrans));
+            }
+            else {
+                var oldTrans = [];
+                oldTrans = JSON.parse(this.localGet('transactions'));
+                oldTrans.push(trans);
+                this.localSet('transactions', JSON.stringify(oldTrans));
+            }
             this.getAccountById(account).balance -= total;
         }
     };

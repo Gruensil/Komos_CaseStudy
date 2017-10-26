@@ -13,10 +13,16 @@ export var lang_EN_US: LangString[] = [
     
     {key: 'balance', text:'balance'},
     {key: 'accountID', text:'account ID'},
+    {key: 'clientID', text:'client ID'},
+    {key: 'firstname', text:'firstname'},
+    {key: 'lastname', text:'lastname'},
+    {key: 'totalAmount', text:'total amount'},
+
     {key: 'back', text:'back'},
     {key: 'selectAccount', text:'select account'},
     {key: 'field.title', text:'title'},
     {key: 'search', text:'search'},
     
     {key: 'mainMenu', text:'Main Menu'},
+    {key: 'transactionView', text:'Transactions'},
 ];

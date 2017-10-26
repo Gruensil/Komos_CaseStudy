@@ -3,6 +3,7 @@ import { provideRouter, RouterConfig }  from '@angular/router';
 import { LoginComponent } from './views/login.component';
 import { MainMenuComponent } from './views/mainMenu.component';
 import { DenominationComponent } from './views/denomination.component';
+import { TransactionViewComponent } from './views/transactionView.component';
 
 export const routes: RouterConfig = [
 	{
@@ -16,6 +17,10 @@ export const routes: RouterConfig = [
 	{
 		path: 'denomination',
 		component: DenominationComponent
+	},
+	{
+		path: 'transactionView',
+		component: TransactionViewComponent
 	},
 	{
 		path: '',

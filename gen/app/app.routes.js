@@ -3,6 +3,7 @@ var router_1 = require('@angular/router');
 var login_component_1 = require('./views/login.component');
 var mainMenu_component_1 = require('./views/mainMenu.component');
 var denomination_component_1 = require('./views/denomination.component');
+var transactionView_component_1 = require('./views/transactionView.component');
 exports.routes = [
     {
         path: 'login',
@@ -15,6 +16,10 @@ exports.routes = [
     {
         path: 'denomination',
         component: denomination_component_1.DenominationComponent
+    },
+    {
+        path: 'transactionView',
+        component: transactionView_component_1.TransactionViewComponent
     },
     {
         path: '',

@@ -35,8 +35,9 @@ var AuthenticationService = (function () {
     AuthenticationService.prototype.logout = function () {
         localStorage.removeItem('user');
         this.isLoggedIn = false;
-        localStorage.setItem('userRole', 'none');
-        localStorage.setItem('clientID', 'none');
+        // localStorage.setItem('userRole', 'none');
+        // localStorage.setItem('clientID', 'none');
+        localStorage.clear();
         this._router.navigate(['login']);
     };
     AuthenticationService.prototype.login = function (username, pw) {

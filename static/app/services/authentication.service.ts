@@ -37,8 +37,9 @@ export class AuthenticationService {
 	logout() {
 		localStorage.removeItem('user');
 		this.isLoggedIn = false;
-		localStorage.setItem('userRole', 'none');
-		localStorage.setItem('clientID', 'none');
+		// localStorage.setItem('userRole', 'none');
+		// localStorage.setItem('clientID', 'none');
+		localStorage.clear();
 		this._router.navigate(['login']);
 	}
 

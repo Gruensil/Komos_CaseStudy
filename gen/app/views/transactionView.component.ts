@@ -10,7 +10,7 @@ import { NgClass } from '@angular/common';
 
 // Search Component Imports
 import { SearchComponent } from '../dynamic/search.component';
-import { AccountListFilter } from '../helper/pipes/accountList.pipe';
+import { TransactionListFilter } from '../helper/pipes/transactionList.pipe';
 
 // Service Imports
 import { LoggerService } from '../services/logger.service';
@@ -20,28 +20,28 @@ import { DisplayPropertiesService } from '../services/displayProperties.service'
 import { ResourceService } from '../services/resource.service';
 
 // domain concept imports
-import { Account } from '../data/account';
+import { Transaction } from '../data/transaction';
 
 @Component({
-	selector: 'mainMenu',
-	templateUrl: 'app/views/mainMenu.component.html',
+	selector: 'transactionView',
+	templateUrl: 'app/views/transactionView.component.html',
 	providers: [LoggerService,DisplayPropertiesService,AuthenticationService,DataService],
 	directives: [NgClass ,SearchComponent ],
-	pipes: [AccountListFilter,]
+	pipes: [TransactionListFilter,]
 })
 
-export class MainMenuComponent {
+export class TransactionViewComponent {
 	//Generate variables for parameters and bindings
-	selectedAccountBinding:  any;
-	isSelectedAccountBinding:  boolean;
+	selectedTransactionBinding:  any;
+	isSelectedTransactionBinding:  boolean;
 	// variable for advanced search space
 	advancedSearchSpace: Object;
 	filterBy: String;
 	// variable for list data binding
-	accountBinding: Account[];
-	accountStatus: any;
-	accoundID: any;
-	// PROTECTED REGION ID _S15wQJxwEee_2OeSSzYyRQ.mainMenu ENABLED START
+	transactionBinding: Transaction[];
+	accountName: any;
+	totalAmount: any;
+	// PROTECTED REGION ID _kZgfALTcEeeUzbyM6lB9Aw.transactionView ENABLED START
 	// PROTECTED REGION END
 
 	constructor(
@@ -55,40 +55,31 @@ export class MainMenuComponent {
 		){
 		// fill advanced search space
 		this.advancedSearchSpace = [
-		{key: "balance", title: "accountStatus"},
-		{key: "accountID", title: "accoundID"}
+		{key: "associatedWith.accountID", title: "associatedWith.accountID"},
+		{key: "associatedWith.balance", title: "associatedWith.balance"},
+		{key: "associatedWith.ownedBy.clientID", title: "associatedWith.ownedBy.clientID"},
+		{key: "associatedWith.ownedBy.firstname", title: "associatedWith.ownedBy.firstname"},
+		{key: "associatedWith.ownedBy.lastname", title: "associatedWith.ownedBy.lastname"},
+		{key: "totalAmount", title: "totalAmount"}
 		];
 	}
 		
 	// stubs generated for view element events
-	
-		selectAccount(){
-			this.denominationActionAction();
-		}
-	
-		denominationActionAction(){
-			// PROTECTED REGION ID _vAz04LTcEeeUzbyM6lB9Aw.denominationAction ENABLED START
-			localStorage.setItem('selectedAcc', this.selectedAccountBinding.accountID)
-			this._router.navigate(['denomination']);
-			// PROTECTED REGION END
-		}
 
 	// stubs for data service calls for data bindings
-	getAccountBinding(){
-		// PROTECTED REGION ID _rFDacJ9mEeeQDN6CvfzAfw.getAccountBinding ENABLED START
-        	var client = this._dataService.getClientById(localStorage.getItem('clientID'));
-        
-			this.accountBinding = this._dataService.getAccountsByClientId(client.clientID);
+	getTransactionBinding(){
+		// PROTECTED REGION ID _DwoS4LTdEeeUzbyM6lB9Aw.getTransactionBinding ENABLED START
+		this.transactionBinding = this._dataService.getTransactionsByClientId(localStorage.getItem('clientID'));
 		// PROTECTED REGION END
 	}
 	
-	onSelect(el: Account){
-		if(this.selectedAccountBinding === el){
-			this.selectedAccountBinding = undefined;
-			this.isSelectedAccountBinding = false;
+	onSelect(el: Transaction){
+		if(this.selectedTransactionBinding === el){
+			this.selectedTransactionBinding = undefined;
+			this.isSelectedTransactionBinding = false;
 		}else{
-			this.selectedAccountBinding = el;
-			this.isSelectedAccountBinding = true;
+			this.selectedTransactionBinding = el;
+			this.isSelectedTransactionBinding = true;
 		}
 	}
 	
@@ -102,10 +93,10 @@ export class MainMenuComponent {
 		// Check authentication requirements, if empty, no authentication requirements for this component
 		
 		// Call methods for filling data binding
-		this.getAccountBinding();
+		this.getTransactionBinding();
 		
 		
-		// PROTECTED REGION ID _S15wQJxwEee_2OeSSzYyRQ.ngOnInit ENABLED START
+		// PROTECTED REGION ID _kZgfALTcEeeUzbyM6lB9Aw.ngOnInit ENABLED START
 		// PROTECTED REGION END
 	}
 }
