@@ -1,5 +1,5 @@
 //
-// Created by IFML2NG2 on 2017/10/27 13:09:52
+// Created by IFML2NG2 on 2017/10/27 15:31:15
 //
 
 // Angular Imports
@@ -71,19 +71,7 @@ export class DenominationComponent {
 			}if(this.fiftyNotes != null){
 				fifty = this.fiftyNotes
 			}
-			console.log(this.fiveNotes)
-			console.log(this.tenNotes)
-			console.log(this.twentyNotes)
-			console.log(this.fiftyNotes)
-			console.log(five)
-			console.log(ten)
-			console.log(twenty)
-			console.log(fifty)
 			if((five+ten+twenty+fifty) > 0){
-				console.log(five)
-				console.log(ten)
-				console.log(twenty)
-				console.log(fifty)
 				this._dataService.initiateTransaction(localStorage.getItem('selectedAcc'), five, ten, twenty, fifty);
 				this._router.navigate(['/mainMenu']);
 			}
