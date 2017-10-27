@@ -12,6 +12,13 @@ var AppProfile = (function () {
     AppProfile.prototype.getUserRole = function () {
         return this.userRole;
     };
+    AppProfile.prototype.setMoodChecked = function (v) {
+        this.moodChecked = v;
+    };
+    ;
+    AppProfile.prototype.getMoodChecked = function () {
+        return this.moodChecked;
+    };
     return AppProfile;
 }());
 exports.AppProfile = AppProfile;

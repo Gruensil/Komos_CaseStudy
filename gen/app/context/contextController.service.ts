@@ -18,6 +18,8 @@ import { NoolsService } from '../services/nools.service';
 
 import { UserDataService } from './providers/userData.service';
 import { DeviceAPIService } from './providers/deviceAPI.service';
+import { FaceDetectionService } from './providers/faceDetection.service';
+import { AppStateService } from './providers/appState.service';
 
 @Injectable()
 export class ContextControllerService{
@@ -32,8 +34,14 @@ export class ContextControllerService{
     private _changedSubject: BehaviorSubject<boolean> = new BehaviorSubject(false);
     public changedSubject: Observable<boolean> = this._changedSubject.asObservable();
     
+    private age: Subscription;
+    private mood: Subscription;
+    private faceDetected: Subscription;
+    private language: Subscription;
     private deviceType: Subscription;
+    private movement: Subscription;
     private userRole: Subscription;
+    private moodChecked: Subscription;
     
 	private timeInit: number = 0;      //initialization for the Timer
 	private timeFast: number = 750;    //update Time for the Fast Update in ms
@@ -43,7 +51,9 @@ export class ContextControllerService{
 	constructor(
 		private flow: NoolsService,
 		private userDataService: UserDataService,
-		private deviceAPIService: DeviceAPIService
+		private deviceAPIService: DeviceAPIService,
+		private faceDetectionService: FaceDetectionService,
+		private appStateService: AppStateService
 	){
 		
 		this.profile = new Profile();
@@ -51,15 +61,51 @@ export class ContextControllerService{
 		
 		this.session = this.flow.getSession();
 		
+		this.age = this.faceDetectionService.ageSubject.subscribe(age => {
+			if(this.active){
+				this.profile.getUser().setAge(age);
+				this.onModified();
+			}
+		});
+		this.mood = this.faceDetectionService.moodSubject.subscribe(mood => {
+			if(this.active){
+				this.profile.getUser().setMood(mood);
+				this.onModified();
+			}
+		});
+		this.faceDetected = this.faceDetectionService.faceDetectedSubject.subscribe(faceDetected => {
+			if(this.active){
+				this.profile.getUser().setFaceDetected(faceDetected);
+				this.onModified();
+			}
+		});
+		this.language = this.deviceAPIService.languageSubject.subscribe(language => {
+			if(this.active){
+				this.profile.getUser().setLanguage(language);
+				this.onModified();
+			}
+		});
 		this.deviceType = this.deviceAPIService.deviceTypeSubject.subscribe(deviceType => {
 			if(this.active){
 				this.profile.getPlatform().setDeviceType(deviceType);
 				this.onModified();
 			}
 		});
+		this.movement = this.deviceAPIService.movementSubject.subscribe(movement => {
+			if(this.active){
+				this.profile.getEnvironment().setMovement(movement);
+				this.onModified();
+			}
+		});
 		this.userRole = this.userDataService.userRoleSubject.subscribe(userRole => {
 			if(this.active){
 				this.profile.getApp().setUserRole(userRole);
+				this.onModified();
+			}
+		});
+		this.moodChecked = this.appStateService.moodCheckedSubject.subscribe(moodChecked => {
+			if(this.active){
+				this.profile.getApp().setMoodChecked(moodChecked);
 				this.onModified();
 			}
 		});
@@ -85,11 +131,17 @@ export class ContextControllerService{
 	}
 	
 	fast(){
+		this.faceDetectionService.getAge();
+		this.faceDetectionService.getMood();
+		this.faceDetectionService.getFaceDetected();
 		this.deviceAPIService.getDeviceType();
+		this.deviceAPIService.getMovement();
 		this.userDataService.getUserRole();
 	}
 	
     slow(){
+		this.deviceAPIService.getLanguage();
+		this.appStateService.getMoodChecked();
     }
     
     //returns Profile instance

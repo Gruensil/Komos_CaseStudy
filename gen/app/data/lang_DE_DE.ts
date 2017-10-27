@@ -11,9 +11,9 @@ export var lang_DE_DE: LangString[] = [
     {key: 'password', text:'Passwort'},
     {key: 'loginEvent', text:'Login'},
     
-    {key: 'balance', text:'Kontostandt'},
-    {key: 'accountID', text:'Kontonr.'},
-    {key: 'clientID', text:'Kundennr.'},
+    {key: 'balance', text:'Kontostand'},
+    {key: 'accountID', text:'KontoNr.'},
+    {key: 'clientID', text:'KundenNr.'},
     {key: 'firstname', text:'Vorname'},
     {key: 'lastname', text:'Nachname'},
     {key: 'totalAmount', text:'Gesamtbetrag'},

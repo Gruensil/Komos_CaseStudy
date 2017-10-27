@@ -20,6 +20,8 @@ import { ResourceService } from './services/resource.service';
 
 import { UserDataService } from './context/providers/userData.service';
 import { DeviceAPIService } from './context/providers/deviceAPI.service';
+import { FaceDetectionService } from './context/providers/faceDetection.service';
+import { AppStateService } from './context/providers/appState.service';
 
 // PROTECTED REGION ID imports ENABLED START
 
@@ -39,6 +41,8 @@ bootstrap(AppComponent,[
 	
 	UserDataService,
 	DeviceAPIService,
+	FaceDetectionService,
+	AppStateService,
 	
 	// PROTECTED REGION ID dependencies ENABLED START
 

@@ -35,10 +35,22 @@ var DataService = (function () {
         return mock_accounts_1.ACCOUNTS;
     };
     DataService.prototype.getAccountById = function (id) {
-        return mock_accounts_1.ACCOUNTS.find(function (acc) { return acc.accountID == id; });
+        var acc = mock_accounts_1.ACCOUNTS.find(function (acc) { return acc.accountID == id; });
+        if (localStorage.getItem(acc.accountID) !== null) {
+            acc.balance = Number(localStorage.getItem(acc.accountID));
+        }
+        return acc;
     };
     DataService.prototype.getAccountsByClientId = function (id) {
-        return mock_accounts_1.ACCOUNTS.filter(function (acc) { return acc.ownedBy.clientID == id; });
+        var accs = [];
+        for (var _i = 0, _a = mock_accounts_1.ACCOUNTS.filter(function (acc) { return acc.ownedBy.clientID == id; }); _i < _a.length; _i++) {
+            var acc = _a[_i];
+            if (localStorage.getItem(acc.accountID) !== null) {
+                acc.balance = Number(localStorage.getItem(acc.accountID));
+            }
+            accs.push(acc);
+        }
+        return accs;
     };
     DataService.prototype.getClients = function () {
         return mock_clients_1.CLIENTS;
@@ -53,9 +65,6 @@ var DataService = (function () {
                 var t = _a[_i];
                 trans.push(t);
             }
-            // trans.concat(JSON.parse(this.localGet('transactions')));
-            console.log(JSON.parse(this.localGet('transactions')));
-            console.log(trans);
         }
         return trans;
     };
@@ -78,7 +87,11 @@ var DataService = (function () {
         };
         var total = fives * 5 + tens * 10 + twenties * 20 + fifties * 50;
         if (total <= this.getAccountById(account).balance) {
+            //Create transaction
             trans.associatedWith = this.getAccountById(account);
+            //Adjust and save current balance
+            this.getAccountById(account).balance -= total;
+            this.localSet(trans.associatedWith.accountID, trans.associatedWith.balance);
             trans.numberFives = fives;
             trans.numberTens = tens;
             trans.numberTwenties = twenties;
@@ -96,7 +109,6 @@ var DataService = (function () {
                 oldTrans.push(trans);
                 this.localSet('transactions', JSON.stringify(oldTrans));
             }
-            this.getAccountById(account).balance -= total;
         }
     };
     DataService = __decorate([

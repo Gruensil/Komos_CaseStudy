@@ -25,6 +25,22 @@ export class NoolsService {
 		private _ResourceService: ResourceService,
 		private _DisplayPropertiesService: DisplayPropertiesService){
 		this.flow = nools.flow("Profile Evaluation", function(flow){
+			flow.rule("Lang de-de", {salience:1},[Profile,"m","m.getUser().getLanguage() == 0"], function(facts){
+				_ResourceService.setLangFile("dede");
+			});
+			flow.rule("Lang en-us", {salience:1},[Profile,"m","m.getUser().getLanguage() == 1"], function(facts){
+				_ResourceService.setLangFile("enus");
+			});
+			flow.rule("User angry", {salience:5},[Profile,"m","(m.getUser().getMood() == 1 && m.getApp().getMoodChecked() == false)"], function(facts){
+				facts.m.getApp().setMoodChecked(true);
+				_DisplayPropertiesService.pushNavigation({path:'/transactionView',key:'transactionView'});
+				$('#_GboJAJ9yEeeQDN6CvfzAfw').css('font-size','26');
+			});
+			flow.rule("User not angry", {salience:5},[Profile,"m","(m.getUser().getMood() != 1 && m.getApp().getMoodChecked() == false)"], function(facts){
+				facts.m.getApp().setMoodChecked(true);
+				_DisplayPropertiesService.removeNavigationPath('/transactionView');
+				$('#_GboJAJ9yEeeQDN6CvfzAfw').css('font-size','18');
+			});
 			flow.rule("Platform Desktop", {salience:6},[Profile,"m","m.getPlatform().getDeviceType() == 'desktop'"], function(facts){
 				_DisplayPropertiesService.setProperty('headerBarClass','row backgroundSecondary divLine borderSecondary');
 				_DisplayPropertiesService.setProperty('routerOutletClass','col-md-10');
@@ -49,11 +65,11 @@ export class NoolsService {
 				_DisplayPropertiesService.setProperty('searchInputGroupClass','input-group backgroundSecondary borderSecondary');
 				_DisplayPropertiesService.setProperty('isMobile',true);
 			});
-			flow.rule("Navigation Client", {salience:11},[Profile,"m","m.getApp().getUserRole() == 'client'"], function(facts){
+			flow.rule("Navigation Client", {salience:3},[Profile,"m","m.getApp().getUserRole() == 'client'"], function(facts){
 				_DisplayPropertiesService.pushNavigation({path:'/mainMenu',key:'mainMenu'});
 				_DisplayPropertiesService.pushNavigation({path:'/transactionView',key:'transactionView'});
 			});
-			flow.rule("Navigation Unregistered", {salience:12},[Profile,"m","m.getApp().getUserRole() != 'client'"], function(facts){
+			flow.rule("Navigation Unregistered", {salience:3},[Profile,"m","m.getApp().getUserRole() != 'client'"], function(facts){
 				_DisplayPropertiesService.clearNavigation();
 			});
 		});

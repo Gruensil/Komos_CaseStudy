@@ -14,6 +14,8 @@ var displayProperties_service_1 = require('./services/displayProperties.service'
 var resource_service_1 = require('./services/resource.service');
 var userData_service_1 = require('./context/providers/userData.service');
 var deviceAPI_service_1 = require('./context/providers/deviceAPI.service');
+var faceDetection_service_1 = require('./context/providers/faceDetection.service');
+var appState_service_1 = require('./context/providers/appState.service');
 // PROTECTED REGION ID imports ENABLED START
 // PROTECTED REGION END
 platform_browser_dynamic_1.bootstrap(app_component_1.AppComponent, [
@@ -28,5 +30,7 @@ platform_browser_dynamic_1.bootstrap(app_component_1.AppComponent, [
     resource_service_1.ResourceService,
     userData_service_1.UserDataService,
     deviceAPI_service_1.DeviceAPIService,
+    faceDetection_service_1.FaceDetectionService,
+    appState_service_1.AppStateService,
 ]);
 //# sourceMappingURL=main.js.map

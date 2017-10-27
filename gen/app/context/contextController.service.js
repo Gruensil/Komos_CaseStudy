@@ -20,12 +20,16 @@ var profile_1 = require('./profile/profile');
 var nools_service_1 = require('../services/nools.service');
 var userData_service_1 = require('./providers/userData.service');
 var deviceAPI_service_1 = require('./providers/deviceAPI.service');
+var faceDetection_service_1 = require('./providers/faceDetection.service');
+var appState_service_1 = require('./providers/appState.service');
 var ContextControllerService = (function () {
-    function ContextControllerService(flow, userDataService, deviceAPIService) {
+    function ContextControllerService(flow, userDataService, deviceAPIService, faceDetectionService, appStateService) {
         var _this = this;
         this.flow = flow;
         this.userDataService = userDataService;
         this.deviceAPIService = deviceAPIService;
+        this.faceDetectionService = faceDetectionService;
+        this.appStateService = appStateService;
         this.active = true;
         this.changed = false;
         this._changedSubject = new Rx_2.BehaviorSubject(false);
@@ -36,15 +40,51 @@ var ContextControllerService = (function () {
         this.profile = new profile_1.Profile();
         this.flow.setProfile(this.profile);
         this.session = this.flow.getSession();
+        this.age = this.faceDetectionService.ageSubject.subscribe(function (age) {
+            if (_this.active) {
+                _this.profile.getUser().setAge(age);
+                _this.onModified();
+            }
+        });
+        this.mood = this.faceDetectionService.moodSubject.subscribe(function (mood) {
+            if (_this.active) {
+                _this.profile.getUser().setMood(mood);
+                _this.onModified();
+            }
+        });
+        this.faceDetected = this.faceDetectionService.faceDetectedSubject.subscribe(function (faceDetected) {
+            if (_this.active) {
+                _this.profile.getUser().setFaceDetected(faceDetected);
+                _this.onModified();
+            }
+        });
+        this.language = this.deviceAPIService.languageSubject.subscribe(function (language) {
+            if (_this.active) {
+                _this.profile.getUser().setLanguage(language);
+                _this.onModified();
+            }
+        });
         this.deviceType = this.deviceAPIService.deviceTypeSubject.subscribe(function (deviceType) {
             if (_this.active) {
                 _this.profile.getPlatform().setDeviceType(deviceType);
                 _this.onModified();
             }
         });
+        this.movement = this.deviceAPIService.movementSubject.subscribe(function (movement) {
+            if (_this.active) {
+                _this.profile.getEnvironment().setMovement(movement);
+                _this.onModified();
+            }
+        });
         this.userRole = this.userDataService.userRoleSubject.subscribe(function (userRole) {
             if (_this.active) {
                 _this.profile.getApp().setUserRole(userRole);
+                _this.onModified();
+            }
+        });
+        this.moodChecked = this.appStateService.moodCheckedSubject.subscribe(function (moodChecked) {
+            if (_this.active) {
+                _this.profile.getApp().setMoodChecked(moodChecked);
                 _this.onModified();
             }
         });
@@ -66,10 +106,16 @@ var ContextControllerService = (function () {
         });
     }
     ContextControllerService.prototype.fast = function () {
+        this.faceDetectionService.getAge();
+        this.faceDetectionService.getMood();
+        this.faceDetectionService.getFaceDetected();
         this.deviceAPIService.getDeviceType();
+        this.deviceAPIService.getMovement();
         this.userDataService.getUserRole();
     };
     ContextControllerService.prototype.slow = function () {
+        this.deviceAPIService.getLanguage();
+        this.appStateService.getMoodChecked();
     };
     //returns Profile instance
     ContextControllerService.prototype.getProfile = function () {
@@ -94,7 +140,7 @@ var ContextControllerService = (function () {
     };
     ContextControllerService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [nools_service_1.NoolsService, userData_service_1.UserDataService, deviceAPI_service_1.DeviceAPIService])
+        __metadata('design:paramtypes', [nools_service_1.NoolsService, userData_service_1.UserDataService, deviceAPI_service_1.DeviceAPIService, faceDetection_service_1.FaceDetectionService, appState_service_1.AppStateService])
     ], ContextControllerService);
     return ContextControllerService;
 }());

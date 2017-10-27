@@ -205,6 +205,12 @@
 																	<xs:attribute name="attribute" use="required"/>
 																</xs:complexType>
 															</xs:element>
+															<xs:element name="changeButtonSizeOperation">
+																<xs:complexType>
+																	<xs:attribute name="buttonObject" use="required"/>
+																	<xs:attribute name="size" use="required"/>
+																</xs:complexType>
+															</xs:element>
 															<xs:element name="editCssClassOperation">
 																<xs:complexType>
 																	<xs:attribute name="cssClass" use="required"/>

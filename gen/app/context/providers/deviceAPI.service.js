@@ -14,64 +14,78 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 // in the folder: static/app/context/providers/
 var core_1 = require('@angular/core');
 var Rx_1 = require('rxjs/Rx');
+var Language_1 = require('../types/Language');
 // PROTECTED REGION ID general ENABLED START
 // PROTECTED REGION END
 var DeviceAPIService = (function () {
-    // PROTECTED REGION ID deviceAPI ENABLED START
-    //private acceleartionAvg = 0.5;      // helper for moving average with magic starting value
-    // private i = 0;                    // helper for debugging
     // PROTECTED REGION END
     function DeviceAPIService() {
         // PROTECTED REGION ID constructor ENABLED START
+        var _this = this;
+        this._languageSubject = new Rx_1.BehaviorSubject(0);
+        this.languageSubject = this._languageSubject.asObservable();
         this._deviceTypeSubject = new Rx_1.BehaviorSubject("init");
         this.deviceTypeSubject = this._deviceTypeSubject.asObservable();
-        //Ambientlight not implemented!!
-        // window.addEventListener('devicelight', event => {
-        //     if (event.value > 300) {
-        //         this.ambientLight = 2;
-        //     }else if(event.value > 100){
-        //             this.ambientLight = 1;
-        //     }else{
-        //         this.ambientLight = 0;
-        //     }
-        //     this.getAmbientLight();
-        // });
+        this._movementSubject = new Rx_1.BehaviorSubject(0);
+        this.movementSubject = this._movementSubject.asObservable();
+        // PROTECTED REGION ID deviceAPI ENABLED START
+        this.acceleartionAvg = 0.5; // helper for moving average with magic starting value
+        this.i = 0; // helper for debugging
         // Updates Movement information for vertical movement
-        // window.addEventListener("devicemotion", event => {
-        //     /*  x,y,z are the accelerations on different axis.
-        //         All combined have a value in still position of ~13.
-        //         This is due acceleration of gravtiy.
-        //         If the device is shaken or moved the value rises.                
-        //     */
-        //     var x = event.accelerationIncludingGravity.x;
-        //     var y = event.accelerationIncludingGravity.y;
-        // 	var z = event.accelerationIncludingGravity.z;
-        // 	var w = y+z+x;
-        //     /*  If the combined acceleration rises above a level
-        //         a moving average is increased. All the used magic values and threshold
-        //         are eperimental and turned out to work fine
-        //     */
-        //     this.acceleartionAvg = this.acceleartionAvg*24;
-        //     if(w > 14 || w < 8.5){
-        //         this.acceleartionAvg += 100;
-        //     }
-        //     this.acceleartionAvg = this.acceleartionAvg/25;
-        //     // if(this.i == 100){
-        //     //     console.log(this.acceleartionAvg);
-        //     //     this.i=0;
-        //     // }else{
-        //     //     this.i++;
-        //     // }
-        //     if(this.acceleartionAvg >= 1){
-        //         this.movement = 2;
-        //     }else if(this.acceleartionAvg >= 0.5){
-        //         this.movement = 1;
-        //     }else{
-        //         this.movement = 0;
-        //     }
-        // });
+        window.addEventListener("devicemotion", function (event) {
+            /*  x,y,z are the accelerations on different axis.
+                All combined have a value in still position of ~13.
+                This is due acceleration of gravtiy.
+                If the device is shaken or moved the value rises.
+            */
+            var x = event.accelerationIncludingGravity.x;
+            var y = event.accelerationIncludingGravity.y;
+            var z = event.accelerationIncludingGravity.z;
+            var w = y + z + x;
+            /*  If the combined acceleration rises above a level
+                a moving average is increased. All the used magic values and threshold
+                are eperimental and turned out to work fine
+            */
+            _this.acceleartionAvg = _this.acceleartionAvg * 24;
+            if (w > 14 || w < 8.5) {
+                _this.acceleartionAvg += 100;
+            }
+            _this.acceleartionAvg = _this.acceleartionAvg / 25;
+            // if(this.i == 100){
+            //     console.log(this.acceleartionAvg);
+            //     this.i=0;
+            // }else{
+            //     this.i++;
+            // }
+            if (_this.acceleartionAvg >= 1) {
+                _this.movement = 2;
+            }
+            else if (_this.acceleartionAvg >= 0.5) {
+                _this.movement = 1;
+            }
+            else {
+                _this.movement = 0;
+            }
+        });
         // PROTECTED REGION END
     }
+    DeviceAPIService.prototype.getLanguage = function () {
+        // PROTECTED REGION ID language ENABLED START
+        switch (navigator.language) {
+            case "de":
+                this.language = Language_1.Language.german;
+                break;
+            case "en" || "en-us":
+                this.language = Language_1.Language.english;
+                break;
+            case "it":
+                this.language = Language_1.Language.italian;
+                break;
+            default: this.language = Language_1.Language.english;
+        }
+        // PROTECTED REGION END
+        this._languageSubject.next(this.language);
+    };
     DeviceAPIService.prototype.getDeviceType = function () {
         // PROTECTED REGION ID deviceType ENABLED START
         if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini|Mobile/.test(navigator.userAgent)) {
@@ -82,6 +96,11 @@ var DeviceAPIService = (function () {
         }
         // PROTECTED REGION END
         this._deviceTypeSubject.next(this.deviceType);
+    };
+    DeviceAPIService.prototype.getMovement = function () {
+        // PROTECTED REGION ID movement ENABLED START
+        // PROTECTED REGION END
+        this._movementSubject.next(this.movement);
     };
     DeviceAPIService = __decorate([
         core_1.Injectable(), 

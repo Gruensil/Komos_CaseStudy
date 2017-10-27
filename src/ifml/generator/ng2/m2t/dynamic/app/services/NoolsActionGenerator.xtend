@@ -114,6 +114,11 @@ public class NoolsActionGenerator{
 							'''
 						}
 					}
+					case "changeButtonSizeOperation": {
+							output += '''
+								$('#«attr.getNamedItem("buttonObject").nodeValue»').css('font-size','«attr.getNamedItem("size").nodeValue»');
+							'''
+					}
 					case "setDisplayProperty": {
 						if (attr.getNamedItem("type") == null || attr.getNamedItem("type").nodeValue == "string") {
 							output += '''

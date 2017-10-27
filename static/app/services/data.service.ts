@@ -37,11 +37,22 @@ export class DataService {
   }
 
   getAccountById(id: string){
-    return ACCOUNTS.find(acc => acc.accountID == id);
+    var acc = ACCOUNTS.find(acc => acc.accountID == id)
+    if(localStorage.getItem(acc.accountID) !== null){
+      acc.balance = Number(localStorage.getItem(acc.accountID))
+    }
+    return acc
   }
 
   getAccountsByClientId(id: string){
-    return ACCOUNTS.filter(acc => acc.ownedBy.clientID == id);
+    var accs = []
+    for(let acc of ACCOUNTS.filter(acc => acc.ownedBy.clientID == id)){
+      if(localStorage.getItem(acc.accountID) !== null){
+        acc.balance = Number(localStorage.getItem(acc.accountID))
+      }
+      accs.push(acc)
+    }
+    return accs
   }
 
   getClients(){
@@ -55,7 +66,9 @@ export class DataService {
   getTransactions(){
     var trans = TRANSACTIONS;
     if(this.localGet('transactions') !== null){
-      trans.concat(JSON.parse(this.localGet('transactions')));
+      for(let t of JSON.parse(this.localGet('transactions'))){
+        trans.push(t)
+      }
     }
     return trans;
   }
@@ -80,27 +93,36 @@ export class DataService {
       numberFifties: 0,
       totalAmount: 0
     };
+
     var total = fives*5 + tens*10 + twenties*20 + fifties*50;
+
     if(total <= this.getAccountById(account).balance){
+
+      //Create transaction
       trans.associatedWith = this.getAccountById(account);
-      trans.numberFives = fives;
-      trans.numberTens = tens;
-      trans.numberTwenties = twenties;
-      trans.numberFifties = fifties;
-      trans.totalAmount = total;
+      
+              //Adjust and save current balance
+              this.getAccountById(account).balance -= total;
+              this.localSet(trans.associatedWith.accountID, trans.associatedWith.balance)
+      
+            trans.numberFives = fives;
+            trans.numberTens = tens;
+            trans.numberTwenties = twenties;
+            trans.numberFifties = fifties;
+            trans.totalAmount = total;
 
       // Add Transactions in localStorage
       if(this.localGet('transactions') === null){
         var newTrans = []
         newTrans.push(trans)
-        this.localSet('transactions', JSON.stringify(newTrans));
+        this.localSet('transactions', JSON.stringify(newTrans))
       }else{
         var oldTrans = []
         oldTrans = JSON.parse(this.localGet('transactions'))
         oldTrans.push(trans)
         this.localSet('transactions', JSON.stringify(oldTrans));
       }
-      this.getAccountById(account).balance -= total;
+      
     }
   }
 }

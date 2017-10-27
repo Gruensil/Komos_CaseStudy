@@ -1,5 +1,5 @@
 //
-// Created by IFML2NG2 on 2017/10/26 17:59:54
+// Created by IFML2NG2 on 2017/10/27 13:09:52
 //
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -41,8 +41,36 @@ var DenominationComponent = (function () {
     };
     DenominationComponent.prototype.transferActionAction = function () {
         // PROTECTED REGION ID _zryXAJ93EeeQDN6CvfzAfw.transferAction ENABLED START
-        if (this.fiveNotes != null && this.tenNotes != null && this.twentyNotes != null && this.fiftyNotes != null) {
-            this._dataService.initiateTransaction(localStorage.getItem('selectedAcc'), this.fiveNotes, this.tenNotes, this.twentyNotes, this.fiftyNotes);
+        var five = 0;
+        var ten = 0;
+        var twenty = 0;
+        var fifty = 0;
+        if (this.fiveNotes != null) {
+            five = this.fiveNotes;
+        }
+        if (this.tenNotes != null) {
+            ten = this.tenNotes;
+        }
+        if (this.twentyNotes != null) {
+            twenty = this.twentyNotes;
+        }
+        if (this.fiftyNotes != null) {
+            fifty = this.fiftyNotes;
+        }
+        console.log(this.fiveNotes);
+        console.log(this.tenNotes);
+        console.log(this.twentyNotes);
+        console.log(this.fiftyNotes);
+        console.log(five);
+        console.log(ten);
+        console.log(twenty);
+        console.log(fifty);
+        if ((five + ten + twenty + fifty) > 0) {
+            console.log(five);
+            console.log(ten);
+            console.log(twenty);
+            console.log(fifty);
+            this._dataService.initiateTransaction(localStorage.getItem('selectedAcc'), five, ten, twenty, fifty);
             this._router.navigate(['/mainMenu']);
         }
         // PROTECTED REGION END

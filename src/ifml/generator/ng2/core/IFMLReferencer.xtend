@@ -52,6 +52,13 @@ class IFMLReferencer {
 					//New ID is inserted
 					action.attributes.getNamedItem("interactionObject").nodeValue = elementID
 					println(interObj + " was replaced by " + elementID)
+				}else if(action.attributes.getNamedItem("buttonObject") != null){
+					var buttonObj = action.attributes.getNamedItem("buttonObject").getNodeValue
+					//ID of Interaction Object is identified from ifml model
+					var elementID = getIFMLID(buttonObj, ifmlModel)
+					//New ID is inserted
+					action.attributes.getNamedItem("buttonObject").nodeValue = elementID
+					println(buttonObj + " was replaced by " + elementID)
 				}
 				action = action.nextSibling
 			}

@@ -2,23 +2,37 @@
 
 // Is the central profile class that connects the different user-defined context-entities
 
+import { UserProfile } from './user.profile';
 import { PlatformProfile } from './platform.profile';
+import { EnvironmentProfile } from './environment.profile';
 import { AppProfile } from './app.profile';
 
 export class Profile {
+	public user: UserProfile;
 	public platform: PlatformProfile;
+	public environment: EnvironmentProfile;
 	public app: AppProfile;
 
     constructor()
     {
        	// initialize context profiles			    	
+		this.user = new UserProfile();
 		this.platform = new PlatformProfile();
+		this.environment = new EnvironmentProfile();
 		this.app = new AppProfile();
     }
     
+	// get User profile
+	public getUser() : UserProfile{
+		return this.user;
+	}
 	// get Platform profile
 	public getPlatform() : PlatformProfile{
 		return this.platform;
+	}
+	// get Environment profile
+	public getEnvironment() : EnvironmentProfile{
+		return this.environment;
 	}
 	// get App profile
 	public getApp() : AppProfile{

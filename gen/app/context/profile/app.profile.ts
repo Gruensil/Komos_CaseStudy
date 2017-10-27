@@ -6,6 +6,7 @@
 export class AppProfile {
 	
 	private userRole: string;
+	private moodChecked: boolean;
     
     constructor(){};
     
@@ -15,6 +16,13 @@ export class AppProfile {
 	
 	public getUserRole(): string{
 	    return this.userRole;
+	}
+	public setMoodChecked(v: boolean){
+	    this.moodChecked = v;
+	};
+	
+	public getMoodChecked(): boolean{
+	    return this.moodChecked;
 	}
 }
 
